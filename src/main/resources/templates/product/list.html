@@ -1,0 +1,53 @@
+<html xmlns:th="http://wwww.thymeleaf.org" th:replace="~{/layout/index::dynamic(~{::main})}">
+<main class="row  row-cols-1  g-4 mt-1 ">
+	<div th:each="p:${items.content}" class="col-sm-3">
+
+		
+		<div class="card">
+          <a th:href="@{|product/detail/${p.id}|}">
+					<img th:src="@{|/assets/images/${p.image}|}" class="cardProduct">
+				</a>
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-3">
+              <h5 class="mb-0">[[${p.name}]]</h5>
+              <h5 class="text-dark mb-0">$999</h5>
+            </div>
+            
+            <div class="d-flex justify-content-between mb-2">
+              <button class="btn btn-outline-dark  w-100" th:classappend="${p.available}?'':disabled"
+						th:attr="ng-click=@{|cart.add(${p.id})|}">
+						<i class="bi-cart-fill me-1"></i>Mua hàng
+					</button>
+            </div>
+            
+          </div>
+        </div>
+
+	</div>
+	<!-- Pagination-->
+	<nav aria-label="Page navigation example">
+		<ul class="pagination justify-content-center ">
+			<li class="page-item" th:classappend="${items.number==0} ? disabled">
+				<a class="page-link" th:href="@{|product/list?cid=${cateID}&sortBy=${sort}&page=${items.number-1}|}"
+					aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>
+			<th:block th:each="pagenumber:${pageNumbers}">
+				<li class="page-item" th:classappend="${pagenumber==items.number+1} ? active"><a class="page-link"
+						th:href="@{|product/list?cid=${cateID}&sortBy=${sort}&page=${pagenumber-1}|}">[[${pagenumber}]]</a>
+				</li>
+			</th:block>
+
+			<li class="page-item" th:classappend="${items.number==items.totalPages-1} ? disabled">
+				<a class="page-link" th:href="@{|product/list?cid=${cateID}&sortBy=${sort}&page=${items.number+1}|}"
+					aria-label="Next">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+	<!-- Pagination Edge-->
+</main>
+
+</html>

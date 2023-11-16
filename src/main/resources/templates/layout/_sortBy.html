@@ -1,0 +1,17 @@
+<div class=" mt-3 ms-4" xmlns:th="http://wwww.thymeleaf.org">
+	
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+     <b><i class="fa-solid fa-filter me-2"></i></b> [[#{sidebar.sortBy}]]
+      </button>
+  </button>
+  <ul class="dropdown-menu">
+    <li> <a th:href="@{|product/list?cid=${cateID}&sortBy=priceDown|}" class="dropdown-item list-group-item-action"><b><i class="fa-solid fa-arrow-down-9-1 me-2"></i></b>[[#{sidebar.highest}]]</a></li>
+    <li><a th:href="@{|product/list?cid=${cateID}&sortBy=priceUp|}" class="dropdown-item list-group-item-action"><b><i class="fa-solid fa-arrow-up-1-9 me-2"></i></b>[[#{sidebar.lowest}]]</a></li>
+    <li><a th:href="@{|product/list?cid=${cateID}&sortBy=dateDown|}" class="dropdown-item  list-group-item-action"><b><i class="fa-solid fa-arrow-down-a-z me-2"></i></b>[[#{sidebar.newDate}]]</a></li>
+  <li><a th:href="@{|product/list?cid=${cateID}&sortBy=dateUp|}" class="dropdown-item  list-group-item-action"><b><i class="fa-solid fa-arrow-up-z-a me-2"></i></b>[[#{sidebar.oldDate}]]</a></li> 
+  </ul>
+</div>
+
+</div>

@@ -1,0 +1,18 @@
+.navbar-brand,.nav-item{
+    font-size:20px !important;
+    margin-right: 13px;
+}
+li .aclink{
+	color: black;
+}
+.aclink:hover {
+	color: red;
+}
+
+li .acLinkMobile{
+	color: white;
+}
+
+.acLinkMobile:hover {
+	color: red;
+}

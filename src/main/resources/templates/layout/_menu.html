@@ -1,0 +1,153 @@
+<nav xmlns:th="http://wwww.thymeleaf.org">
+<link rel="stylesheet" th:href="@{|/assets/css/_menu.css|}">
+	<!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+            	<th:block th:unless="${#request.remoteUser}">
+                	<a th:href="@{/security/login/form}">[[#{menu.login}]]</a>
+                </th:block>
+                <a href="#">FAQs</a>
+            </div>
+            <th:block th:if="${#request.remoteUser}">
+            	<div class="offcanvas__top__hover">
+	              <span th:if="${#request.remoteUser}">[[#{menu.welcome}]] [[${#request.remoteUser}]]<i class="arrow_carrot-down"></i></span>
+		                <ul>
+		                    <li><a class="acLinkMobile" th:href="@{/security/logoff}">[[#{menu.logout}]]</a></li>
+		                    <li><a class="acLinkMobile" th:href="@{/order/list}">[[#{menu.order}]]</a></li>
+		                    <li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
+		                          <a class="acLinkMobile" th:href="@{/admin/home/index}">[[#{menu.admin}]]</a>
+		                    </li>
+		                </ul>
+	            </div>
+            </th:block>
+            
+        </div>
+        <div class="offcanvas__nav__option">
+            <a href="#" class="search-switch"><img th:src="@{|/assets/img/icon/search.png|}" alt=""></a>
+            <a href="#"><img th:src="@{|/assets/img/icon/heart.png|}" alt=""></a>
+            <a href="#"><img th:src="@{|/assets/img/icon/cart.png|}" alt=""> <span>0</span></a>
+            <div class="price">$0.00</div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            <p>Free shipping, 30-day return or refund guarantee.</p>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+<!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                            <p>Free shipping, 30-day return or refund guarantee.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                                <th:block th:unless="${#request.remoteUser}">
+				                	<a th:href="@{/security/login/form}">[[#{menu.login}]]</a>
+				                </th:block>
+				                 <th:block th:if="${#request.remoteUser}">
+				                 	<div class="header__top__hover">
+		                                <span th:if="${#request.remoteUser}">[[#{menu.welcome}]] [[${#request.remoteUser}]]<i class="arrow_carrot-down"></i></span>
+		                                <ul>
+		                                    <li><a class="aclink" th:href="@{/security/logoff}">[[#{menu.logout}]]</a></li>
+		                                    <li><a class="aclink" th:href="@{/order/list}">[[#{menu.order}]]</a></li>
+		                                    <li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
+		                                    	<a class="aclink" th:href="@{/admin/home/index}">[[#{menu.admin}]]</a>
+		                                    </li>
+		                                </ul>
+		                            </div>
+				                 </th:block>
+                                <a href="#">FAQs</a>
+                            </div>
+                            <div class="header__top__hover">
+                                <span>Usd <i class="arrow_carrot-down"></i></span>
+                                <ul>
+                                    <li>USD</li>
+                                    <li>EUR</li>
+                                    <li>USD</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="/"><img th:src="@{|/assets/img/logo.png|}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li class="active"><a th:href="@{/}">Home</a></li>
+                            <li><a href="./shop.html">Shop</a></li>
+                            <li><a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li><a href="./about.html">About Us</a></li>
+                                    <li><a href="./shop-details.html">Shop Details</a></li>
+                                    <li><a href="./shopping-cart.html">Shopping Cart</a></li>
+                                    <li><a href="./checkout.html">Check Out</a></li>
+                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="./blog.html">Contacts</a></li>
+                            <li><a href="./contact.html">Shop</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option">
+                        <a href="#" class="search-switch"><img th:src="@{|/assets/img/icon/search.png|}" alt=""></a>
+                        <a href="#"><img th:src="@{|/assets/img/icon/heart.png|}" alt=""></a>
+                        <a th:href="@{/cart/view}"><img th:src="@{|/assets/img/icon/cart.png|}" alt=""><span>{{cart.count}}</span></a>
+                        <div class="price">${{cart.amount | number:2}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+
+<!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+	
+</nav>
+
+  
+
+    
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$(".language").click(function () {
+			var url = $(this).prop("href");
+			console.log(url);
+			$.ajax({
+				url: url,
+			}).then(resp => {
+				location.reload();
+			});
+
+			return false;
+		})
+	})
+</script>
