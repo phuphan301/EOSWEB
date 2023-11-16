@@ -1,6 +1,16 @@
-<div class="list-group  rounded-0" xmlns:th="http://wwww.thymeleaf.org">
-	<a class="list-group-item list-group-item-action text-center text-primary fw-bold " aria-current="true">
+<!--  -->
+<div class="row" xmlns:th="http://wwww.thymeleaf.org">
+	<p class="h3 text-center fw-bold " aria-current="true">
 	 [[#{sidebar.category}]]
-	</a>
-	<a th:each="c:${cates}" th:href="@{|/product/list?cid=${c.id}|}" class="list-group-item list-group-item-action"><b></b> [[${c.name}]]</a>
+	</p>
+	<div class="col-md-2 mt-2 mb-2" th:each="c:${cates}">
+		<div class="card border-0">
+			<div class="card-body">
+				<img th:src="@{|/assets/images/1005.jpg|}" alt="" style="width: 50px; object-fit: cover; margin-left: 30px;">
+				<div>
+					<a th:href="@{|/product/list?cid=${c.id}|}" class="card-title h6 text-black text-center">[[${c.name}]]</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
