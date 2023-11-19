@@ -114,18 +114,18 @@ app.controller("account-ctrl",function($scope,$http,$location){
 	}
 
     //Remove account
-/*    $scope.delete = function(item){
-		$http.delete(`/rest/products/${item.id}`).then(resp=>{
-			var index = $scope.items.findIndex(p=>p.id == item.id);
+/* */   $scope.delete = function(item){
+		$http.delete(`/rest/accounts/${item.username}`).then(resp=>{
+			var index = $scope.items.findIndex(p=>p.username == item.username);
 			$scope.items.splice(index,1);
 			$scope.reset();
-			alert('Xoá sản phẩm thành công!');
+			alert('Xoá User thành công!');
 			console.log(resp.data);
 		}).catch(err=>{
-			alert('Lỗi xoá sản phẩm!')
+			alert('Lỗi xóa user!')
 			console.log("Error ",err);
 		})
-	}*/
+	}
 
 	//reset form
 	$scope.reset = function(){

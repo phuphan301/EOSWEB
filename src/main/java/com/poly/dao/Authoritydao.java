@@ -24,5 +24,4 @@ public interface Authoritydao extends JpaRepository<Authority, Integer>{
 	@Modifying
 	@Query("Delete from Authority where Username = ?1")
 	void deleteByUserName(String username);
-
 }

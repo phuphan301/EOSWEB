@@ -7,5 +7,5 @@ import com.poly.entity.Role;
 
 @Repository
 public interface Roledao extends JpaRepository<Role, String>{
-
+	Role findByName(String name);
 }

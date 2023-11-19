@@ -21,4 +21,6 @@ public interface Accountdao extends JpaRepository<Account, String>{
 			+ "Group by a.Username, a.Fullname, a.email, a.photo "
 			+ "order by totalPayment desc",nativeQuery = true)
 	List<Object[]> top10Customer();
+	
+	Account findByUsername(String username);
 }

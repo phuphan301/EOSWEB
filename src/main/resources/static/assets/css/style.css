@@ -104,8 +104,13 @@
 	background-color:  var(--mainColor);
 }
 
-a img.cardProduct{
-	width: 500px;
+img.cardProduct{
 	object-fit: cover;
+}
+
+.acardPR{
+	width: 200px; /* Đặt kích thước mong muốn cho hình ảnh */
+      height: 200px; /* Đặt kích thước mong muốn cho hình ảnh */
+      overflow: hidden;
 }
 /*Border bottom edge*/

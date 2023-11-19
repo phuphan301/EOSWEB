@@ -4,8 +4,11 @@
 
 		
 		<div class="card">
-          <a th:href="@{|product/detail/${p.id}|}">
-					<img th:src="@{|/assets/images/${p.image}|}" class="cardProduct">
+		<div class="d-flex justify-content-between p-3" th:if="${not p.available}">
+            <p class="lead mb-0 text-warning">Hết hàng</p>
+          </div>
+          <a th:href="@{|product/detail/${p.id}|}" class="acardPR">
+					<img th:src="@{|/assets/images/${p.image}|}" class="cardProduct img-fluid">
 				</a>
           <div class="card-body">
             <div class="d-flex justify-content-between mb-3">

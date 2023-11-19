@@ -38,4 +38,8 @@ public class SecurityController {
 		model.addAttribute("message", "Bạn đã đăng xuất!");
 		return "security/login";
 	}
+	@GetMapping("register/form")
+	public String registerForm(Model model) {
+		return "security/register";
+	}
 }
