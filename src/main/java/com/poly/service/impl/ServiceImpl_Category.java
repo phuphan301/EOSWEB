@@ -17,4 +17,14 @@ public class ServiceImpl_Category implements Service_Category{
 	public List<Category> findAll() {
 		return cateDao.findAll();
 	}
+
+	@Override
+	public Category update(Category category) {
+		return cateDao.save(category);
+	}
+
+	@Override
+	public Category create(Category category) {
+		return cateDao.save(category);
+	}
 }

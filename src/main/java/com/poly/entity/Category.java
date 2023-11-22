@@ -20,6 +20,8 @@ public class Category implements Serializable{
 	@Id
 	String id;
 	String name;
+	String image;
+	Boolean available;
 	@JsonIgnore
 	@OneToMany(mappedBy = "category")
 	List<Product> products;

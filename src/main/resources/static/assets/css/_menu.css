@@ -16,3 +16,6 @@ li .acLinkMobile{
 .acLinkMobile:hover {
 	color: red;
 }
+.logomenu{
+	width: 100px;
+}

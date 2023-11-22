@@ -10,5 +10,9 @@ import com.poly.entity.Category;
 public interface Service_Category {
 
 	List<Category> findAll();
+	
+	Category update(Category category);
+	
+	Category create(Category category);
 
 }
