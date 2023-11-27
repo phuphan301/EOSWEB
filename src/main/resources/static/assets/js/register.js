@@ -12,10 +12,17 @@ app.controller("register-ctrl",function($scope,$http){
 			$scope.items.push(resp.data);
 			console.log(resp.data);
 			//$scope.reset();
-			alert("Đăng ký tài khoản thành công!");
+			// Hiển thị thông báo đăng ký thành công
+        $scope.registrationSuccess = true;
+ 		$scope.registrationFailure = false;
+			console.log("Đăng ký tài khoản thành công!");
 		}).catch(err=>{
 			console.log("Error ",err);
-			alert("Đăng ký tài khoản thất bại!");
+			console.log("Đăng ký tài khoản thất bại!");
+			
+			// Hiển thị thông báo đăng ký thất bại
+        $scope.registrationFailure = true;
+		$scope.registrationSuccess = false;
 		})
     }
 

@@ -23,4 +23,6 @@ public interface Service_Account {
 	Long getTotalAccount();
 
 	List<Object[]> top10Customer();
+	
+	void delete(String username);
 }

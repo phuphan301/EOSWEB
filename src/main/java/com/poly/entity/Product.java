@@ -29,6 +29,10 @@ public class Product  implements Serializable{
 	Integer id;
 	String name;
 	String image;
+	String cpu;
+	String screen;
+	String ram;
+	String harddrive;
 	Double price;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Createdate")//nếu tên 2 chữ thì phải viết thường mới map được vs bên CSDL

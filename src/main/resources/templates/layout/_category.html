@@ -1,15 +1,18 @@
 <!--  -->
 <div class="row" xmlns:th="http://wwww.thymeleaf.org">
-	<p class="h3 text-center fw-bold " aria-current="true">
+	<p class="h3 text-center fw-bold mt-3" aria-current="true">
 	 [[#{sidebar.category}]]
 	</p>
-	<div class="col-md-2 mt-2 mb-2" th:each="c:${cates}" th:if="${c.available}">
-		<div class="card border-0">
+	<div class="col-md-2 mt-2 mb-2 w-50 d-flex justify-content-center" th:each="c:${cates}" th:if="${c.available}">
+		<div class="card border-0 rounded-circle w-50">
 			<div class="card-body">
-				<img th:src="@{|/assets/images/${c.image}|}" alt="iconcategory" style="width: 50px; object-fit: cover; margin-left: 30px;">
-				<div>
+				<a th:href="@{|/product/list?cid=${c.id}|}" class="d-flex justify-content-center">
+					<img th:src="@{|/assets/images/${c.image}|}" alt="iconcategory" class="w-80 d-flex justify-content-center">
+				</a>
+				
+				<!-- <div>
 					<a th:href="@{|/product/list?cid=${c.id}|}" class="card-title h6 text-black text-center">[[${c.name}]]</a>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

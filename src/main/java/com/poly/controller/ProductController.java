@@ -64,7 +64,7 @@ public class ProductController {
 				sortOption = Sort.by(Direction.ASC, "createDate");
 				
 			}
-			pageable = PageRequest.of(p.orElse(0), 6, sortOption);
+			pageable = PageRequest.of(p.orElse(0), 8, sortOption);
 			list = productService.findAll(pageable);
 			model.addAttribute("items", list);
 		}
@@ -87,7 +87,7 @@ public class ProductController {
 				sortOption = Sort.by(Direction.ASC, "createDate");
 				
 			}
-			pageable = PageRequest.of(p.orElse(0), 6, sortOption);
+			pageable = PageRequest.of(p.orElse(0), 8, sortOption);
 			list = productService.findByCategoryID(cid.get(),pageable);
 			model.addAttribute("items", list);
 			model.addAttribute("cateID", cid.get());
@@ -107,5 +107,5 @@ public class ProductController {
 		model.addAttribute("item", item);
 		return "product/detail";
 	}
-	
+
 }

@@ -49,5 +49,11 @@ public class ServiceImpl_Account implements Service_Account{
 		return accDao.top10Customer();
 	}
 
+	@Override
+	public void delete(String username) {
+		accDao.deleteById(username);
+		
+	}
+
 	
 }

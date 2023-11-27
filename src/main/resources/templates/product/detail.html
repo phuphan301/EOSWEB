@@ -4,49 +4,102 @@
 
 		<!-- Portfolio Item Heading -->
 		<h1 class="my-4">
-		[[*{name}]]
+			[[*{name}]]
 		</h1>
 
 		<!-- Portfolio Item Row -->
 		<div class="row">
 
-			<div class="col-md-8 mx-auto">
-				<img th:src="@{|/assets/images/*{image}|}">
+			<div class="col-md-8 mx-auto d-flex justify-content-between" style="width: 100px;">
+				<img th:src="@{|/assets/images/*{image}|}" class="w-55">
 			</div>
 
 			<div class="col-md-4">
-				<h3 class="my-3">Thông tin sản phẩm</h3>
-				<li>[[*{name}]]</li>
+				<h3 class="my-3">INFOMATION PRODUCT</h3>
+				<!-- <li>[[*{name}]]</li>
 				<li>[[*{price}]]</li>
 				<li>[[*{createDate}]]</li>
 				<li>[[*{category.name}]]</li>
+				<li>[[*{cpu}]]</li>
+				<li>[[*{ram}]]</li>
+				<li>[[*{screen}]]</li>
+				<li>[[*{harddrive}]]</li> -->
+				<div class="d-flex justify-content-between mb-3">
+					<h5 class="text-dark mb-0">Name: [[*{name}]]</h5>
+				</div>
+				<div class="d-flex justify-content-between mb-3">
+					<h5 class="text-dark mb-0">[[*{price}]] $</h5>
+				</div>
+				<div class="d-flex justify-content-between mb-3">
+					<h5 class="text-dark mb-0">Release Date: [[*{createDate}]]</h5>
+				</div>
+				<div class="d-flex justify-content-between mb-3">
+					<h5 class="text-dark mb-0">Hard Drive: [[*{harddrive}]]</h5>
+				</div>
+				<div class="d-flex justify-content-between mb-3">
+					<h5 class="text-dark mb-0">Category: [[*{category.name}]]</h5>
+				</div>
+				<div class="d-flex justify-content-between mb-3">
+					<h5 class="text-dark mb-0">Ram: [[*{ram}]]</h5>
+				</div>
+				<div class="d-flex justify-content-between mb-3">
+					<h5 class="text-dark mb-0">Screen: [[*{screen}]]</h5>
+				</div>
 				<div class="d-flex ">
 
 					<button class="btn btn-success" th:classappend="*{available}?'':disabled">
 						<i class="bi-cart-fill me-1"></i> Add to cart
 					</button>
-				
+
 				</div>
 			</div>
+			<div class="d-flex justify-content-between mb-3 mt-3 text-center">
+					<h3 class="text-dark mb-0 text-center">Product Type Of [[*{category.name}]]</h3>
+				</div>
+		</div>
+		
+		<div class="row">
+			<div th:each="p, iterStat : *{category.products}" th:if="${iterStat.index} lt 4" class="col-sm-3">
+					
+
+				<div class="card w-100">
+					<div class="d-flex justify-content-between">
+						<p class="fs-6"><a href="#!" class="text-muted">[[${p.category.name}]]</a></p>
+						<p class="text-danger fs-6" th:if="${not p.available}">Hết hàng</p>
+					</div>
+					<div>
+						<a th:href="@{|product/detail/${p.id}|}" class="acardPR">
+							<img th:src="@{|/assets/images/${p.image}|}" class="product-image">
+						</a>
+					</div>
+
+					<div class="card-body">
+						<div class="d-flex justify-content-between mb-3">
+							<h5 class="mb-0">[[${p.name}]]</h5>
+						</div>
+						<div class="d-flex justify-content-between mb-3">
+							<h5 class="text-dark mb-0">[[${p.price}]] $</h5>
+						</div>
+						<div class="d-flex justify-content-between mb-2">
+							<button class="btn btn-outline-dark  w-100" th:classappend="${p.available}?'':disabled"
+								th:attr="ng-click=@{|cart.add(${p.id})|}">
+								<i class="bi-cart-fill me-1"></i>Mua hàng
+							</button>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
 
 		</div>
-	
+
+
 
 	</div>
-	
+
 	<div class="">
-		<div class="card">
-			<div class="card-header bg-primary text-white">
-				<h3 class="mt-2">HÀNG CÙNG LOẠI</h3>
-			</div>
-			<div class="card-body">
-				<ul>
-					<li th:each="p:*{category.products}">
-						<a th:href="@{|product/detail/${p.id}|}">[[${p.name}]]</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+	
 	</div>
 </main>
 

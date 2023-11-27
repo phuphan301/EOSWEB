@@ -71,56 +71,64 @@
 	-->
 	
 	
-		<div class="container-fluid ps-md-0">
-			<div class="row g-0  ">
-				<div class="d-none d-md-flex col-lg-3 bg-image"></div>
-				<div class="col-md-3 col-lg-6">
-					<div class="login d-flex align-items-center">
-						<div class="col-md-12 col-lg-12 ">
-							<h3 class="login-heading mb-4 text-center">							
-									<div class="text-center mb-3 fw-bolder">
-										Welcome back!</div>
-								
-							</h3>
-	
-							<!-- Sign In Form -->
-							<form th:action="@{/security/login}" method="post" class="col-sm-12 ms-5 mx-auto">
-								<div class="form-floating mb-3 ">
-									<input type="text" class="form-control" name="username" id="floatingInput"
-										placeholder="name"> <label for="floatingInput">Tên Đăng Nhập</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input type="password" name="password" class="form-control" id="floatingPassword"
-										placeholder="Password"> <label for="floatingPassword">Password</label>
-								</div>
-	
-								<div class="form-check mb-3">
-	
-									<input class="form-check-input" type="checkbox" name="remember" value="true"
-										id="rememberPasswordCheck">
-									<label class="form-check-label" for="rememberPasswordCheck">
-										Remember password </label>
-								</div>
-	
-								<div class="d-grid">
-									<b class="text-danger"><i>[[${message}]]</i></b>
-									<button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2"
-										type="submit">Sign in</button>
-									<div class="text-center">
-										<a href="/" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back to
-											shop</a> <a col-6 class="small" href="#">Forgot password?</a> <a href="/security/register/form" class="text-body">Register <i class="fas fa-long-arrow-alt-right me-2"></i></a>
-									</div>
-								</div>
-	
-							</form>
+		
+
+		<section class="vh-100" style="background: linear-gradient(45deg, #662E00, #D47800);">
+			<div class="container py-5 h-100">
+			  <div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col col-xl-10">
+				  <div class="card" style="border-radius: 1rem;">
+					<div class="row g-0">
+					  <div class="col-md-6 col-lg-5 d-none d-md-block">
+						<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+						  alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+					  </div>
+					  <div class="col-md-6 col-lg-7 d-flex align-items-center">
+						<div class="card-body p-4 p-lg-5 text-black">
+		  
+						  <form th:action="@{/security/login}" method="post">
+		  
+							<div class="d-flex align-items-center mb-3 pb-1">
+								<a href="/"><img class="logomenu" th:src="@{|/assets/img/logo.png|}" alt="" style="width: 200px;"></a>
+							  <!-- <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+							  <span class="h1 fw-bold mb-0">Logo</span> -->
+							</div>
+		  
+							<h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+		  
+							<div class="form-outline mb-4">
+								<label class="form-label" for="form2Example17">Username</label>
+							  <input type="text" id="form2Example17" name="username" class="form-control form-control-lg" />
+							 
+							</div>
+		  
+							<div class="form-outline mb-4">
+								<label class="form-label" for="form2Example27">Password</label>
+							  <input type="password" name="password" id="form2Example27" class="form-control form-control-lg" />
+							  
+							</div>
+		  
+							<div class="pt-1 mb-4">
+							  <button class="btn btn-outline-dark btn-lg btn-block" type="submit">Login</button>
+							</div>
+							<b class="text-danger"><i>[[${message}]]</i></b>
+							<!-- <a class="small text-muted" href="#!">Forgot password?</a> -->
+							<p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="/security/register/form"
+								style="color: #393f81;">Register here</a></p>
+								<a href="/" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back to
+									shop</a>
+							<!-- <a href="#!" class="small text-muted">Terms of use.</a>
+							<a href="#!" class="small text-muted">Privacy policy</a> -->
+						  </form>
+		  
 						</div>
-	
-	
+					  </div>
 					</div>
+				  </div>
 				</div>
+			  </div>
 			</div>
-		</div>
-		<!--	</form>-->
+		  </section>
 	
 	</main>
 </body>

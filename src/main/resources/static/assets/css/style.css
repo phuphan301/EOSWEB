@@ -104,8 +104,14 @@
 	background-color:  var(--mainColor);
 }
 
-img.cardProduct{
+/* img.cardProduct{
 	object-fit: cover;
+} */
+
+a> .product-image {
+    max-width: 100%; /* Hình ảnh sẽ không bao giờ vượt quá kích thước gốc */
+    height: auto; /* Giữ cho tỉ lệ khung hình */
+    width: 100%; /* Đảm bảo rằng hình ảnh sẽ chiếm toàn bộ chiều rộng của phần tử cha */
 }
 
 .acardPR{
