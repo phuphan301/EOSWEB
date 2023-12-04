@@ -21,4 +21,6 @@ public interface Service_Order {
 	Long totalOrder();
 
 	List<Object[]> getRevenueLast7Days();
+	List<Order> findAll();
+	Order update(Order order);
 }

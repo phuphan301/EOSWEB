@@ -1,6 +1,7 @@
 package com.poly.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,6 @@ public interface Service_Account {
 	List<Object[]> top10Customer();
 	
 	void delete(String username);
+	
+	List<Account> findByFullname(String username);
 }

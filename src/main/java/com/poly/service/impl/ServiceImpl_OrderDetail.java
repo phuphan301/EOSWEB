@@ -1,11 +1,13 @@
 package com.poly.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.poly.dao.OrderDetaildao;
+import com.poly.entity.OrderDetail;
 import com.poly.service.Service_OrderDetail;
 import com.poly.util.XDate;
 
@@ -23,5 +25,8 @@ public class ServiceImpl_OrderDetail implements Service_OrderDetail{
 	public Double getTotalIncome() {
 		return daoDetail.findAll().stream().mapToDouble(item->item.getPrice()*item.getQuantity()).sum();
 	}
-
+	
+	public List<OrderDetail> findListOrderDetail(Long id) {
+		return daoDetail.findListOrderDetails(id);
+	}
 }

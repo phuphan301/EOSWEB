@@ -68,6 +68,7 @@ app.controller("shopping-cart-ctrl",function($scope,$http){
    $scope.order = {
        createDate:new Date(),
        address:"",
+       status:"processing",
        account:{username:$("#username").text()},
        get orderDetails(){
            return $scope.cart.items.map(item=>{
@@ -78,6 +79,11 @@ app.controller("shopping-cart-ctrl",function($scope,$http){
                }
            })
        },
+       get total() {
+        return this.orderDetails.reduce((total, item) => {
+            return total + item.price * item.quantity;
+        }, 0);
+    },
        purchase(){
            var order = angular.copy(this);
            //Thực hiện đặt hàng

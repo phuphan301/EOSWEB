@@ -1,8 +1,10 @@
 package com.poly.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.poly.dao.Accountdao;
@@ -12,6 +14,9 @@ import com.poly.service.Service_Account;
 @Service
 public class ServiceImpl_Account implements Service_Account{
 	@Autowired private Accountdao accDao;
+	
+	@Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public Account findById(String username) {
@@ -30,6 +35,8 @@ public class ServiceImpl_Account implements Service_Account{
 
 	@Override
 	public Account create(Account account) {
+		account.setExist(true);
+		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		return accDao.save(account);
 	}
 
@@ -53,6 +60,11 @@ public class ServiceImpl_Account implements Service_Account{
 	public void delete(String username) {
 		accDao.deleteById(username);
 		
+	}
+
+	@Override
+	public List<Account> findByFullname(String username) {
+		return accDao.findByFullname(username);
 	}
 
 	

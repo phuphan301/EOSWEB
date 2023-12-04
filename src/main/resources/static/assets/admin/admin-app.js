@@ -10,11 +10,18 @@ app.config(function($routeProvider) {
         templateUrl:"/assets/admin/category/index.html",
         controller: "category-ctrl"
     })
+    .when("/statistical",{
+        templateUrl:"/assets/admin/statistical/index.html",
+        controller: "statistical-ctrl"
+    })
     .when("/account",{
         templateUrl:"/assets/admin/account/index.html",
         controller: "account-ctrl"
     })
-    
+    .when("/order",{
+        templateUrl:"/assets/admin/order/order.html",
+        controller: "order-ctrl"
+    })
     .when("/authorize",{
         templateUrl:"/assets/admin/authority/index.html",
         controller: "authority-ctrl"

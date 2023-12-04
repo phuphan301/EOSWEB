@@ -31,16 +31,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(username->{
 			try {
-				Account user = accountService.findById(username);
-				
-				String password = pe.encode(user.getPassword());
-				String[] roles = user.getAuthorities().stream()
-						.map(el->el.getRole().getId())
-						.collect(Collectors.toList()).toArray(new String[0]);
-				return User.withUsername(username).password(password).roles(roles).build();
-			} catch (Exception e) {
-				throw new UsernameNotFoundException(username + "not found!");
-			}
+	            Account user = accountService.findById(username);
+
+	            // Không cần mã hóa lại mật khẩu ở đây
+	            String password = user.getPassword();
+
+	            String[] roles = user.getAuthorities().stream()
+	                    .map(el -> el.getRole().getId())
+	                    .collect(Collectors.toList())
+	                    .toArray(new String[0]);
+
+	            return User.withUsername(username).password(password).roles(roles).build();
+	        } catch (Exception e) {
+	            throw new UsernameNotFoundException(username + " not found!");
+	        }
 		});
 	}
 	

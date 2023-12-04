@@ -179,4 +179,19 @@ app.controller("account-ctrl",function($scope,$http,$location){
 			this.page = this.count -1;
 		},
 	}
+
+	$scope.searchFullname = function(){
+        if($scope.searchfullname == ''){
+            //load accounts
+			$http.get("/rest/accounts").then(resp=>{
+				$scope.items = resp.data;
+			})
+        }else{
+			
+            $http.get("/rest/accounts/search/"+$scope.searchfullname).then(resp=>{
+				console.log($scope.searchfullname);
+				$scope.items = resp.data;
+			})
+        }
+    }
 })

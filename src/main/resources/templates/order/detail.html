@@ -113,15 +113,15 @@
 												</ul>
 											</div>
 										</th:block>
-										<a href="#">FAQs</a>
+										<!-- <a href="#">FAQs</a> -->
 									</div>
 									<div class="header__top__hover">
-										<span>Usd <i class="arrow_carrot-down"></i></span>
-										<ul>
+										<!-- <span>Usd <i class="arrow_carrot-down"></i></span> -->
+										<!-- <ul>
 											<li>USD</li>
 											<li>EUR</li>
 											<li>USD</li>
-										</ul>
+										</ul> -->
 									</div>
 								</div>
 							</div>
@@ -139,7 +139,7 @@
 							<nav class="header__menu mobile-menu">
 								<ul>
 									<li class="active"><a th:href="@{/}">Home</a></li>
-									<li><a href="./shop.html">Shop</a></li>
+									<!-- <li><a href="./shop.html">Shop</a></li>
 									<li><a href="#">Pages</a>
 										<ul class="dropdown">
 											<li><a href="./about.html">About Us</a></li>
@@ -148,9 +148,12 @@
 											<li><a href="./checkout.html">Check Out</a></li>
 											<li><a href="./blog-details.html">Blog Details</a></li>
 										</ul>
-									</li>
-									<li><a href="./blog.html">Contacts</a></li>
-									<li><a href="./contact.html">Shop</a></li>
+									</li> -->
+									<th:block th:if="${#request.remoteUser}">
+										<li><a  th:href="@{/order/list}" >[[#{menu.order}]]</a></li>
+										<li><a th:href="@{/home/profile}" >Hồ Sơ</a></li>
+									</th:block>
+									
 								</ul>
 							</nav>
 						</div>
@@ -209,6 +212,17 @@
 							<textarea th:field="*{address}" class="form-control" readonly="readonly" rows="3"
 								cols="10"></textarea>
 						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="form-group col-sm-6 text-warning">
+							<label class="text-warning">Status</label>
+							<input type="text" th:field="*{status}" class="form-control" readonly>
+						</div>
+						<div class="form-group col-sm-6">
+							<label>Total Price</label>
+							<input type="text" th:field="*{total}" class="form-control" readonly>
+						</div>
+						
 					</div>
 				</div>
 			</div>

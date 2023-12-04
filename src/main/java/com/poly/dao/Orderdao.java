@@ -1,7 +1,10 @@
 package com.poly.dao;
 
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -38,4 +41,19 @@ public interface Orderdao extends JpaRepository<Order, Long>{
 			+ "left join OrderDetails dt on  t1.Id = dt.OrderId "
 			+ "Group by cast(t.last7Days as Date)", nativeQuery = true)
 	List<Object[]> getRevenueLast7Days();
+	
+	@Query("Select o from Order o")
+	Page<Order> findAllPage(Pageable pageable);
+
+	@Query("Select o from Order o where o.id = :id")
+	Page<Order> findSearchIdPage(Pageable pageable, Long id);
+
+	@Query("Select o from Order o where o.account.username LIKE %:username%")
+	Page<Order> findSearchUserPage(Pageable pageable, String username);
+
+	@Query("SELECT o FROM Order o WHERE o.createDate BETWEEN :startDate AND :endDate")
+	Page<Order> findDatePage(Pageable pageable, Date startDate, Date endDate);
+
+	@Query("Select o from Order o where o.id =:id")
+	Order findByOrderId(Long id);
 }

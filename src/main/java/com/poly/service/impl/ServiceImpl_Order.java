@@ -1,9 +1,13 @@
 package com.poly.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -57,5 +61,35 @@ public class ServiceImpl_Order implements Service_Order{
 	public List<Object[]> getRevenueLast7Days() {
 		return dao.getRevenueLast7Days();
 	}
-	
+	@Override
+	public List<Order> findAll() {
+		return dao.findAll();
+	}
+	public Page<Order> findAllPage(int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+		return dao.findAllPage(pageable);
+	}
+
+	public Page<Order> findsearchListOrderUserPage(int page, int size, String username) {
+		Pageable pageable = PageRequest.of(page, size);
+		return dao.findSearchUserPage(pageable, username);
+	}
+
+	public Page<Order> findsearchListOrderIdPage(int page, int size, Long id) {
+		Pageable pageable = PageRequest.of(page, size);
+		return dao.findSearchIdPage(pageable, id);
+	}
+
+	public Page<Order> findDatePage(int page, int size, Date startDate, Date endDate) {
+		Pageable pageable = PageRequest.of(page, size);
+		return dao.findDatePage(pageable, startDate, endDate);
+	}
+
+	public Order findByOrderId(Long id) {
+		return dao.findByOrderId(id);
+	}
+	@Override
+	public Order update(Order order) {
+		return dao.save(order);
+	}
 }

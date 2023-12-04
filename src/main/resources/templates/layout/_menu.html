@@ -12,7 +12,7 @@
             </div>
             <th:block th:if="${#request.remoteUser}">
             	<div class="offcanvas__top__hover">
-	              <span th:if="${#request.remoteUser}">[[#{menu.welcome}]] [[${#request.remoteUser}]]<i class="arrow_carrot-down"></i></span>
+	              <span th:if="${#request.remoteUser}">[[#{menu.welcome}]] [[${#request.remoteUser}]]</span>
 		                <ul>
 		                    <li><a class="acLinkMobile" th:href="@{/security/logoff}">[[#{menu.logout}]]</a></li>
 		                    <li><a class="acLinkMobile" th:href="@{/order/list}">[[#{menu.order}]]</a></li>
@@ -55,25 +55,26 @@
 				                </th:block>
 				                 <th:block th:if="${#request.remoteUser}">
 				                 	<div class="header__top__hover">
-		                                <span th:if="${#request.remoteUser}">[[#{menu.welcome}]] [[${#request.remoteUser}]]<i class="arrow_carrot-down"></i></span>
+		                                <span th:if="${#request.remoteUser}">[[#{menu.welcome}]] [[${#request.remoteUser}]]</span>
 		                                <ul>
 		                                    <li><a class="aclink" th:href="@{/security/logoff}">[[#{menu.logout}]]</a></li>
 		                                    <li><a class="aclink" th:href="@{/order/list}">[[#{menu.order}]]</a></li>
+                                            <li><a class="aclink" th:href="@{/home/profile}">Hồ sơ</a></li>
 		                                    <li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
 		                                    	<a class="aclink" th:href="@{/admin/home/index}">[[#{menu.admin}]]</a>
 		                                    </li>
 		                                </ul>
 		                            </div>
 				                 </th:block>
-                                <a href="#">FAQs</a>
+                                <!-- <a href="#">FAQs</a> -->
                             </div>
                             <div class="header__top__hover">
-                                <span>Usd <i class="arrow_carrot-down"></i></span>
+                                <!-- <span>Usd <i class="arrow_carrot-down"></i></span>
                                 <ul>
                                     <li>USD</li>
                                     <li>EUR</li>
                                     <li>USD</li>
-                                </ul>
+                                </ul> -->
                             </div>
                         </div>
                     </div>
@@ -91,7 +92,7 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a th:href="@{/}">Home</a></li>
-                            <li><a href="./shop.html">Shop</a></li>
+                            <!-- <li><a href="./shop.html">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="./about.html">About Us</a></li>
@@ -100,16 +101,19 @@
                                     <li><a href="./checkout.html">Check Out</a></li>
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
-                            </li>
-                            <li><a href="./blog.html">Contacts</a></li>
-                            <li><a href="./contact.html">Shop</a></li>
+                            </li> -->
+                            <th:block th:if="${#request.remoteUser}">
+                                <li><a  th:href="@{/order/list}" >[[#{menu.order}]]</a></li>
+                                <li><a th:href="@{/home/profile}" >Hồ Sơ</a></li>
+                            </th:block>
+                            
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <a href="#" class="search-switch"><img th:src="@{|/assets/img/icon/search.png|}" alt=""></a>
-                        <a href="#"><img th:src="@{|/assets/img/icon/heart.png|}" alt=""></a>
+                        <!-- <a href="#" class="search-switch"><img th:src="@{|/assets/img/icon/search.png|}" alt=""></a>
+                        <a href="#"><img th:src="@{|/assets/img/icon/heart.png|}" alt=""></a> -->
                         <a th:href="@{/cart/view}"><img th:src="@{|/assets/img/icon/cart.png|}" alt=""><span>{{cart.count}}</span></a>
                         <div class="price">${{cart.amount | number:2}}</div>
                     </div>
