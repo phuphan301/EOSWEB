@@ -11,7 +11,7 @@ app.config(function($routeProvider) {
         controller: "category-ctrl"
     })
     .when("/statistical",{
-        templateUrl:"/assets/admin/statistical/index.html",
+        templateUrl:"/assets/admin/statistical/view.html",
         controller: "statistical-ctrl"
     })
     .when("/account",{

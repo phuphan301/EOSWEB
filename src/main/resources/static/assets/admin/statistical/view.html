@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="card-body">
+    <label>Start Date</label>
+    <input type="date" ng-model="startDate">
+    <label>End Date</label>
+    <input type="date" ng-model="endDate">
+    <button ng-click="updateData()">Filter</button>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Total Quantity</th>
+          <th>Revenue</th>
+          <th>Create Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in pager.revenueData">
+          <td>{{ item[0] }}</td>
+          <td>{{ item[1] }}</td>
+          <td>{{ item[2] | number:2 }}</td>
+          <td>{{ item[3] | date:'dd-MM-yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="card-footer text-center">
+    	<button ng-click="pager.first()" class="btn btn-secondary" style="width: 42px;"><i class="fa-solid fa-backward-step"></i></button>
+    	<button ng-click="pager.previous()" class="btn btn-outline-secondary"><i class="fa-solid fa-backward"></i></button>
+    	<button class="btn btn-secondary">{{pager.page+1}} of {{pager.count}}</button>
+    	<button ng-click="pager.next()" class="btn btn-outline-secondary"><i class="fa-solid fa-forward"></i></button>
+    	<button ng-click="pager.last()" class="btn btn-secondary" style="width: 42px;"><i class="fa-solid fa-forward-step"></i></button>
+    </div>
+  </div>
+  <div>
+    <canvas id="myChart"></canvas>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <label>Start Date</label>
+      <input type="date" ng-model="startDateCate">
+      <label>End Date</label>
+      <input type="date" ng-model="endDateCate">
+      <button ng-click="updateDateCategories()">Filter Categories</button>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Total Quantity</th>
+            <th>Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in revenueCategories">
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] | number:2 }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-6">
+      <canvas id="chartCategories"></canvas>
+    </div>
+  </div>
+</div>

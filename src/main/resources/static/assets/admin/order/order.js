@@ -3,7 +3,7 @@ app.controller("order-ctrl",function($scope, $http, $filter){
     $scope.currentPage = 0;
     $scope.order = {};
     $scope.detailOrder = [];
-     $scope.statusOptions = ['processing', 'shipped', 'received','delivered','fail'];
+    $scope.statusOptions = ['processing', 'shipped', 'received','delivered','fail'];
     $scope.order = {}; 
     $scope.loadListOrder = function(page){
         $http.get("/rest/orders/getListOrder/" + page).then(resp=>{

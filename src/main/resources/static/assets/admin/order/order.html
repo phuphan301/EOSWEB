@@ -32,6 +32,7 @@
             <th scope="col">Username</th>
             <th scope="col">Order Date</th>
             <th scope="col">Address</th>
+            <th scope="col">Status</th>
             <th scope="col text-center">#</th>
           </tr>
         </thead>
@@ -42,6 +43,7 @@
             <td>{{list.account.username}}</td>
             <td>{{list.createDate | date : 'dd/MM/yyyy'}}</td>
             <td>{{list.address}}</td>
+            <td>{{list.status}}</td>
             <td>
               <button class="btn btn-sm btn-success" ng-click="orderDetail(list.id)">
                  Chi tiết
@@ -85,8 +87,16 @@
                   <input type="text"   ng-model="order.createDate" class="form-control" disabled>
                 </div>
                 <div class="col-12 mt-3">
+                  <Label class="form-label">Fullname</Label>
+                  <input type="text"  ng-model="order.account.fullname" class="form-control" disabled>
+                </div>
+                <div class="col-6 mt-3">
                   <Label class="form-label">Username</Label>
                   <input type="text"  ng-model="order.account.username" class="form-control" disabled>
+                </div>
+                <div class="col-6 mt-3">
+                  <label class="form-label">Email</label>
+                  <input type="text" ng-model="order.account.email" class="form-control" disabled>
                 </div>
                 <div class="col-12 mt-3">
                   <Label class="form-label">Address</Label>

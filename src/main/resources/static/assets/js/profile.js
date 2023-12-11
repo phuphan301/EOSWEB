@@ -83,15 +83,11 @@ app.controller("account-ctrl", function ($scope, $http, $location) {
                 $scope.confirmpassword = '';
             })
             .catch(function (error) {
-                //console.error('Error:', error);
-                if (error.status === 400 && error.data === 'Mật khẩu cũ không đúng') {
-                    alert('Mật khẩu cũ không đúng');
-                } else {
-                    alert('Lỗi đổi mật khẩu: ' + error.data);
-                }
+                console.error('Error:', error);
+                alert('Lỗi đổi mật khẩu: ' + error.data);
             });
     }
-
+  
     //khởi đầu
     $scope.initialize();
 })

@@ -4,6 +4,7 @@ app.controller("account-ctrl",function($scope,$http,$location){
     $scope.form = {};
     $scope.roles = [];
     $scope.selection =[];
+	//$scope.searchName = '';
     // $scope.initialRoles= [{name:"Customer",value:'CUST'},{name:"Staff",value:'STAF'},{name:"Director",value:'DIRE'}]
     $scope.initialize = function(){
 		//load all roles
@@ -27,6 +28,9 @@ app.controller("account-ctrl",function($scope,$http,$location){
 	}
 	
 	//Chọn roles
+	$scope.atLeastOneCheckboxSelected = false;
+
+	//Chọn roles
 	$scope.toggleRole = function(role){
 		var compareElement = -1;
 		var idx = $scope.selection.indexOf(role);
@@ -39,6 +43,9 @@ app.controller("account-ctrl",function($scope,$http,$location){
 		else{
 			$scope.selection.push(role);
 		}
+
+		// Cập nhật atLeastOneCheckboxSelected
+		$scope.atLeastOneCheckboxSelected = $scope.selection.length > 0;
 	}
 	
 	//Load Roles on form by clicking Edit
@@ -59,11 +66,36 @@ app.controller("account-ctrl",function($scope,$http,$location){
     $scope.edit = function(item){
 		$scope.form = angular.copy(item);
 		$scope.getOneByRole(item.username);
+		$scope.form.confirmPassword = $scope.form.password;
 		$('#pills-home-tab').tab('show');
     }
 	//Thêm account
     $scope.create = function(){
 		var item = angular.copy($scope.form);
+		if ($scope.form.username == null || $scope.form.username == "") {
+			alert("Tên đăng nhập không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.password == null || $scope.form.password == "") {
+			alert("Mật khẩu không được bỏ trống!");
+			return;
+		}
+		if (!$scope.form.password || $scope.form.password.length < 8 || !/[!@#$%^&*(),.?":{}|<>]/.test($scope.form.password)) {
+		    alert("Password must contain at least 8 characters and at least one special character.")
+		    return;
+		}
+		if ($scope.form.fullname == null || $scope.form.fullname == "") {
+			alert("Họ tên không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.email == null || $scope.form.email == "") {
+			alert("Email không được bỏ trống!");
+			return;
+		}
+		if($scope.form.phonenumber == null || $scope.form.phonenumber == ""){
+			alert("Phone Number không được bỏ trống")
+			return
+		}
 		$http.post(`/rest/accountsManage`,item).then(resp=>{
 			$scope.items.push(resp.data);
 			console.log(resp.data);
@@ -87,6 +119,26 @@ app.controller("account-ctrl",function($scope,$http,$location){
     //Update account
     $scope.update = function(){
 		var item = angular.copy($scope.form);
+		if ($scope.form.username == null || $scope.form.username == "") {
+			alert("Tên đăng nhập không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.password == null || $scope.form.password === "") {
+			alert("Mật khẩu không được bỏ trống!");
+			return;
+		}
+		if (!$scope.form.password || $scope.form.password.length < 8 || !/[!@#$%^&*(),.?":{}|<>]/.test($scope.form.password)) {
+		    alert("Password must contain at least 8 characters and at least one special character.")
+		    return;
+		}
+		if ($scope.form.fullname == null || $scope.form.fullname == "") {
+			alert("Họ tên không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.email == null || $scope.form.email == "") {
+			alert("Email không được bỏ trống!");
+			return;
+		}
 		$http.put(`/rest/accounts/${item.username}`,item).then(resp=>{
 			var index = $scope.items.findIndex(p=>p.username == item.username);
 			$scope.items[index] = item;
@@ -112,6 +164,11 @@ app.controller("account-ctrl",function($scope,$http,$location){
 		
 		
 	}
+
+/*	$scope.updateConfirmPassword = function() {
+		// Gán giá trị từ trường mật khẩu vào trường xác nhận mật khẩu
+		$scope.form.confirmPassword = $scope.form.password;
+	  };*/
 
     //Remove account
 /* */   $scope.delete = function(item){
@@ -181,17 +238,23 @@ app.controller("account-ctrl",function($scope,$http,$location){
 	}
 
 	$scope.searchFullname = function(){
-        if($scope.searchfullname == ''){
+		//alert($scope.searchName);
+		var keyword = $scope.searchName;
+		console.log($scope.searchName);
+        if($scope.searchName == ''){
             //load accounts
 			$http.get("/rest/accounts").then(resp=>{
 				$scope.items = resp.data;
 			})
         }else{
-			
-            $http.get("/rest/accounts/search/"+$scope.searchfullname).then(resp=>{
-				console.log($scope.searchfullname);
+            $http.get("/rest/accounts/search/",
+			{params: {
+				searchName: keyword
+			}
+		}).then(resp=>{
+				console.log($scope.searchName);
 				$scope.items = resp.data;
 			})
         }
-    }
+    };
 })

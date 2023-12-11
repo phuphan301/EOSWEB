@@ -1,5 +1,6 @@
 package com.poly.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -23,4 +24,8 @@ public interface Service_Order {
 	List<Object[]> getRevenueLast7Days();
 	List<Order> findAll();
 	Order update(Order order);
+	List<Object[]> getRevenueProductByDate(LocalDate startDate, LocalDate endDate);
+	List<Object[]> getRevanuePrOrders();
+	List<Object[]> getRevanueCategories();
+	List<Object[]> getRevenueCategoriesByDate(LocalDate startDate, LocalDate endDate);
 }

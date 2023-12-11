@@ -1,5 +1,6 @@
 package com.poly.dao;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -7,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.poly.entity.Order;
@@ -56,4 +59,25 @@ public interface Orderdao extends JpaRepository<Order, Long>{
 
 	@Query("Select o from Order o where o.id =:id")
 	Order findByOrderId(Long id);
+	
+	@Procedure(name = "getRevenueProductByDate")
+	List<Object[]> getRevenueProductByDate(@Param("StartDate") LocalDate startDate, @Param("EndDate") LocalDate endDate);
+	
+	@Query(value = "select p.Name, SUM(o.Quantity) as TotalQuantity, SUM(o.Quantity * o.Price) as Revenue, Orders.CreateDate from OrderDetails o \r\n"
+			+ "inner join Products p on o.ProductId = p.Id \r\n"
+			+ "inner join Orders on o.OrderId = Orders.Id\r\n"
+			+ "group by p.Name, Orders.CreateDate\r\n"
+			+ "order by Revenue desc, Orders.CreateDate desc", nativeQuery = true)
+	List<Object[]> getRevanuePrOrders();
+	
+	@Query(value = "select c.Name, SUM(od.Quantity) as TotalQuantity, SUM(od.Quantity * od.Price) as Revenue\r\n"
+			+ "from Categories c \r\n"
+			+ "inner join Products p on c.Id = p.CategoryId\r\n"
+			+ "inner join OrderDetails od on p.Id = od.ProductId \r\n"
+			+ "inner join Orders o on o.Id = od.OrderId\r\n"
+			+ "group by c.Name", nativeQuery = true)
+	List<Object[]> getRevanueCategories();
+	
+	@Procedure(name = "getRevenueCategoriesByDate")
+	List<Object[]> getRevenueCategoriesByDate(@Param("StartDate") LocalDate startDateCate, @Param("EndDate") LocalDate endDate);
 }

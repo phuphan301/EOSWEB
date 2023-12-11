@@ -91,34 +91,34 @@
 								<div class="header__top__right">
 									<div class="header__top__links">
 										<th:block th:unless="${#request.remoteUser}">
-											<a th:href="@{/security/login/form}">[[#{menu.login}]]</a>
+											<a th:href="@{/security/login/form}">Login</a>
 										</th:block>
 										<th:block th:if="${#request.remoteUser}">
 											<div class="header__top__hover">
-												<span th:if="${#request.remoteUser}">[[#{menu.welcome}]]
+												<span th:if="${#request.remoteUser}">Welcome
 													[[${#request.remoteUser}]]<i class="arrow_carrot-down"></i></span>
 												<ul>
 													<li><a class="aclink"
-															th:href="@{/security/logoff}">[[#{menu.logout}]]</a></li>
-													<li><a class="aclink" th:href="@{/order/list}">[[#{menu.order}]]</a>
+															th:href="@{/security/logoff}">Logout</a></li>
+													<li><a class="aclink" th:href="@{/order/list}">Orders</a>
 													</li>
 													<li
 														th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
 														<a class="aclink"
-															th:href="@{/admin/home/index}">[[#{menu.admin}]]</a>
+															th:href="@{/admin/home/index}">Manage</a>
 													</li>
 												</ul>
 											</div>
 										</th:block>
-										<a href="#">FAQs</a>
+										<!-- <a href="#">FAQs</a> -->
 									</div>
 									<div class="header__top__hover">
-										<span>Usd <i class="arrow_carrot-down"></i></span>
+										<!-- <span>Usd <i class="arrow_carrot-down"></i></span>
 										<ul>
 											<li>USD</li>
 											<li>EUR</li>
 											<li>USD</li>
-										</ul>
+										</ul> -->
 									</div>
 								</div>
 							</div>
@@ -179,7 +179,7 @@
                 </div>
                 <div class="card-footer text-center">
                     <button ng-click="changepass()" class="btn btn-outline-primary"><b class="fa-solid fa-square-plus"></b> Upadate</button>
-                    <!-- <a th:href="@{/home/changed}" class="btn btn-outline-success"> Change Password</a> -->
+                    <!-- <a th:href="@{/home/changed}" class="btn btn-outline-success"> Change Password</a>  -->
                 </div>
             </div>
         </section>
@@ -212,16 +212,16 @@
                                 Products
                             </h6>
                             <p>
-                                <a href="#!" class="text-reset">Angular</a>
+                                <a href="#!" class="text-reset">ACER</a>
                             </p>
                             <p>
-                                <a href="#!" class="text-reset">React</a>
+                                <a href="#!" class="text-reset">ASUS</a>
                             </p>
                             <p>
-                                <a href="#!" class="text-reset">Vue</a>
+                                <a href="#!" class="text-reset">HP</a>
                             </p>
                             <p>
-                                <a href="#!" class="text-reset">Laravel</a>
+                                <a href="#!" class="text-reset">APPLE</a>
                             </p>
                         </div>
                         <!-- Grid column -->
@@ -233,7 +233,7 @@
                                 Useful links
                             </h6>
                             <p>
-                                <a href="#!" class="text-reset">Pricing</a>
+                                <a href="#!" class="text-reset">Privacy</a>
                             </p>
                             <p>
                                 <a href="#!" class="text-reset">Settings</a>

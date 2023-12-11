@@ -1,5 +1,6 @@
 package com.poly.service.impl;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -91,5 +92,21 @@ public class ServiceImpl_Order implements Service_Order{
 	@Override
 	public Order update(Order order) {
 		return dao.save(order);
+	}
+	@Override
+	public List<Object[]> getRevenueProductByDate(LocalDate startDate, LocalDate endDate) {
+		return dao.getRevenueProductByDate(startDate, endDate);
+	}
+	@Override
+	public List<Object[]> getRevanuePrOrders() {
+		return dao.getRevanuePrOrders();
+	}
+	@Override
+	public List<Object[]> getRevanueCategories() {
+		return dao.getRevanueCategories();
+	}
+	@Override
+	public List<Object[]> getRevenueCategoriesByDate(LocalDate startDate, LocalDate endDate) {
+		return dao.getRevenueCategoriesByDate(startDate, endDate);
 	}
 }

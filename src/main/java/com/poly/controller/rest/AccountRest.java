@@ -75,29 +75,18 @@ public class AccountRest {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    String username = authentication.getName();
 	    Account account = accountService.findById(username);
-	    
-	 // Kiểm tra mật khẩu cũ
-//	    if (!passwordEncoder.matches(oldpassword, account.getPassword())) {
-//	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Mật khẩu cũ không đúng");
-//	    }
-
-	    // Kiểm tra mật khẩu mới (nếu có yêu cầu cụ thể)
-//	    if (!isValidNewPassword(newpassword)) {
-//	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Mật khẩu mới không hợp lệ");
-//	    }
-	    
-	    // Kiểm tra mật khẩu cũ
-	    
-//	    if (!passwordEncoder.matches(oldpassword, account.getPassword())) {
-//	    	System.out.println(oldpassword);
-//	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Mật khẩu cũ không đúng");
-//	    }
-	    
+	    /**/
+	    System.out.println(account);
 	    if(!passwordEncoder.matches(oldpassword, account.getPassword())) {
-	    	System.out.println(oldpassword);
+	    	System.out.println("Invalid pass: "+oldpassword);
+	    	System.out.println(passwordEncoder.matches(oldpassword, account.getPassword()));
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Mật khẩu cũ không đúng");
 	    }
-
+	    /*
+	    if(!oldpassword.equals(account.getPassword())) {
+	    	System.out.println(oldpassword);
+	    	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Mật khẩu cũ không đúng");
+	    }*/
 
 	    // Cập nhật mật khẩu mới
 	    account.setPassword(passwordEncoder.encode(newpassword));
@@ -118,8 +107,9 @@ public class AccountRest {
 	    return newPassword.length() >= 8; // Đơn giản cho mục đích minh họa
 	}
 	
-	@GetMapping("accounts/search/{fullname}")
-	public List<Account> getAccountByFullname(@PathVariable String fullname) {
-		return accountService.findByFullname(fullname);
+	@GetMapping("accounts/search/")
+	public List<Account> getAccountByFullname(@RequestParam("searchName") String searchName) {
+		System.out.println(searchName);
+		return accountService.findByFullname(searchName);
 	}
 }

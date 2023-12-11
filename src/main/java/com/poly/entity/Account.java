@@ -24,6 +24,7 @@ public class Account  implements Serializable{
 	String fullname;
 	String email;
 	String photo;
+	String phonenumber;
 	Boolean exist;
 	@JsonIgnore
 	@OneToMany(mappedBy = "account")

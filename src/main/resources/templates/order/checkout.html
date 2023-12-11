@@ -47,19 +47,19 @@
 				<div class="offcanvas__option">
 					<div class="offcanvas__links">
 						<th:block th:unless="${#request.remoteUser}">
-							<a th:href="@{/security/login/form}">[[#{menu.login}]]</a>
+							<a th:href="@{/security/login/form}">Login</a>
 						</th:block>
-						<a href="#">FAQs</a>
+						<!-- <a href="#">FAQs</a> -->
 					</div>
 					<th:block th:if="${#request.remoteUser}">
 						<div class="offcanvas__top__hover">
-							<span th:if="${#request.remoteUser}">[[#{menu.welcome}]] [[${#request.remoteUser}]]<i
+							<span th:if="${#request.remoteUser}">Welcome [[${#request.remoteUser}]]<i
 									class="arrow_carrot-down"></i></span>
 							<ul>
-								<li><a class="acLinkMobile" th:href="@{/security/logoff}">[[#{menu.logout}]]</a></li>
-								<li><a class="acLinkMobile" th:href="@{/order/list}">[[#{menu.order}]]</a></li>
+								<li><a class="acLinkMobile" th:href="@{/security/logoff}">Logout</a></li>
+								<li><a class="acLinkMobile" th:href="@{/order/list}">Orders</a></li>
 								<li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
-									<a class="acLinkMobile" th:href="@{/admin/home/index}">[[#{menu.admin}]]</a>
+									<a class="acLinkMobile" th:href="@{/admin/home/index}">Manage</a>
 								</li>
 							</ul>
 						</div>
@@ -93,21 +93,21 @@
 								<div class="header__top__right">
 									<div class="header__top__links">
 										<th:block th:unless="${#request.remoteUser}">
-											<a th:href="@{/security/login/form}">[[#{menu.login}]]</a>
+											<a th:href="@{/security/login/form}">Login</a>
 										</th:block>
 										<th:block th:if="${#request.remoteUser}">
 											<div class="header__top__hover">
-												<span th:if="${#request.remoteUser}">[[#{menu.welcome}]]
+												<span th:if="${#request.remoteUser}">Welcome
 													[[${#request.remoteUser}]]<i class="arrow_carrot-down"></i></span>
 												<ul>
 													<li><a class="aclink"
-															th:href="@{/security/logoff}">[[#{menu.logout}]]</a></li>
-													<li><a class="aclink" th:href="@{/order/list}">[[#{menu.order}]]</a>
+															th:href="@{/security/logoff}">Logout</a></li>
+													<li><a class="aclink" th:href="@{/order/list}">Orders</a>
 													</li>
 													<li
 														th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
 														<a class="aclink"
-															th:href="@{/admin/home/index}">[[#{menu.admin}]]</a>
+															th:href="@{/admin/home/index}">Manage</a>
 													</li>
 												</ul>
 											</div>
@@ -150,7 +150,7 @@
 									</li> -->
 									<th:block th:if="${#request.remoteUser}">
 										<li><a  th:href="@{/order/list}" >[[#{menu.order}]]</a></li>
-										<li><a th:href="@{/home/profile}" >Hồ Sơ</a></li>
+										<li><a th:href="@{/home/profile}" >Profile</a></li>
 									</th:block>
 									
 								</ul>
@@ -249,16 +249,16 @@
 			  Products
 			</h6>
 			<p>
-			  <a href="#!" class="text-reset">Angular</a>
+			  <a href="#!" class="text-reset">HP</a>
 			</p>
 			<p>
-			  <a href="#!" class="text-reset">React</a>
+			  <a href="#!" class="text-reset">ACER</a>
 			</p>
 			<p>
-			  <a href="#!" class="text-reset">Vue</a>
+			  <a href="#!" class="text-reset">ASUS</a>
 			</p>
 			<p>
-			  <a href="#!" class="text-reset">Laravel</a>
+			  <a href="#!" class="text-reset">APPLE</a>
 			</p>
 		  </div>
 		  <!-- Grid column -->
@@ -270,7 +270,7 @@
 			  Useful links
 			</h6>
 			<p>
-			  <a href="#!" class="text-reset">Pricing</a>
+			  <a href="#!" class="text-reset">Privacy</a>
 			</p>
 			<p>
 			  <a href="#!" class="text-reset">Settings</a>

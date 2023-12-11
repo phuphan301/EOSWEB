@@ -27,5 +27,5 @@ public interface Service_Account {
 	
 	void delete(String username);
 	
-	List<Account> findByFullname(String username);
+	List<Account> findByFullname(String fullname);
 }

@@ -11,14 +11,20 @@
     		</div>
     		<div class="col-sm-8">
     			<div class="row">
-    				<div class="form-group col-sm-6">
+    				<div class="form-group col-sm-4">
     					<label>Username</label>
     					<input ng-model="form.username" class="form-control" />
     				</div>
-    				<div class="form-group col-sm-6">
+    				<div class="form-group col-sm-4">
     					<label>Password</label>
     					<input ng-model="form.password" class="form-control" type="password"/>
     				</div>
+					<div class="form-group col-sm-4">
+						<label>Confirm Password</label>
+						<input ng-model="form.confirmPassword" class="form-control" type="password" />
+						<span ng-show="form.password !== form.confirmPassword && form.confirmPassword"
+							class="text-danger">Passwords do not match.</span>
+					</div>
     			</div>
     			<div class="row">
     				<div class="form-group col-sm-6">
@@ -37,7 +43,7 @@
 						    </div>
     					</div>
     				</div>
-			
+					
     			</div>
     			<div class="row">
     				<div class="form-group col-sm-6">
@@ -46,7 +52,7 @@
     				</div>
     				<div class="form-group col-sm-6">
     					<label>Email</label>
-    					<input ng-model="form.email" class="form-control" type="email"/>
+    					<input ng-model="form.email" class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
     				</div>
     			</div>
 				<div class="row">
@@ -65,14 +71,19 @@
 							</div>
 						</div>
 					</div>
+					<div class="form-group col-sm-6">
+    					<label>Phone Number</label>
+    					<input ng-model="form.phonenumber" class="form-control" type="text" ng-pattern="/^039\d{7}$/" required/>
+						<span ng-show="form.phonenumber.$error.pattern" class="text-danger">Số điện thoại không hợp lệ.</span>
+    				</div>
 				</div>
     		</div>
     	</div>
     </div>
     <div class="card-footer text-center">
-    	<button ng-click="create()" class="btn btn-outline-primary"><b class="fa-solid fa-square-plus"></b> Create</button>
-    	<button ng-click="update()" class="btn btn-outline-success"><b class="fa-solid fa-square-pen"></b> Update</button>
-    	<button ng-click="delete(form)"  class="btn btn-outline-danger"><b class="fa-solid fa-trash-can"></b> Delete</button>
+    	<button ng-click="create()" class="btn btn-outline-primary" ng-disabled="form.password !== form.confirmPassword || !form.password || !form.confirmPassword || !atLeastOneCheckboxSelected || !form.phonenumber"><b class="fa-solid fa-square-plus"></b> Create</button>
+    	<button ng-click="update()" class="btn btn-outline-success" ng-disabled="form.password !== form.confirmPassword || !form.password || !form.confirmPassword || !atLeastOneCheckboxSelected || !form.phonenumber"><b class="fa-solid fa-square-pen"></b> Update</button>
+    	<!-- <button ng-click="delete(form)"  class="btn btn-outline-danger"><b class="fa-solid fa-trash-can"></b> Delete</button> -->
     	<button ng-click="reset()" class="btn btn-outline-info"><b class="fa-solid fa-rotate"></b> Reset</button>
     </div>
 </div>

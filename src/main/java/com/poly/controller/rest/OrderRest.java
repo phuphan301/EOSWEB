@@ -1,10 +1,14 @@
 package com.poly.controller.rest;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -75,5 +80,31 @@ public class OrderRest {
 	@PutMapping("{id}")
 	public Order update(@RequestBody Order order, @PathVariable("id") Integer id) {
 		return ordertService.update(order);
+	}
+	
+	@Transactional
+	@GetMapping("/byDate")
+	public List<Object[]> getRevanueProductByDate(@RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+			@RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate){
+		System.out.println("Start Date: "+startDate);
+		System.out.println("End Date: "+endDate);
+		return ordertService.getRevenueProductByDate(startDate, endDate);
+	}
+	
+	@GetMapping("/RevenueProduct")
+	public List<Object[]> getRevenueProductOrder(){
+		return ordertService.getRevanuePrOrders();
+	}
+	
+	@GetMapping("/RevenueCategories")
+	public List<Object[]> getRevenueCategories(){
+		return ordertService.getRevanueCategories();
+	}
+	
+	@Transactional
+	@GetMapping("/Categories/byDate")
+	public List<Object[]> getRevanueCategoriesByDate(@RequestParam("startDateCate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDateCate,
+			@RequestParam("endDateCate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDateCate){
+		return ordertService.getRevenueCategoriesByDate(startDateCate, endDateCate);
 	}
 }

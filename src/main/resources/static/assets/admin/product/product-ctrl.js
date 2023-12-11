@@ -35,6 +35,43 @@ app.controller("product-ctrl",function($scope,$http){
     //Thêm sản phẩm
     $scope.create = function(){
 		var item = angular.copy($scope.form);
+		if ($scope.form.name == null || $scope.form.name == "") {
+			alert("Tên sản phẩm không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.price == null || $scope.form.price == "") {
+			alert("Giá không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.price < 0 || $scope.form.price === 0) {
+			alert("Giá không phù hợp!");
+			return;
+		}
+		if ($scope.form.screen == null || $scope.form.screen == "") {
+			alert("Screen không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.ram == null || $scope.form.ram == "") {
+			alert("Ram không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.harddrive == null || $scope.form.harddrive == "") {
+			alert("Hard Drive không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.cpu == null || $scope.form.cpu == "") {
+			alert("Cpu không được bỏ trống!");
+			return;
+		}
+		if (!$scope.form.category.id) {
+			// Hiển thị thông báo lỗi hoặc thực hiện các hành động khác tùy thuộc vào yêu cầu của bạn
+			alert("Bạn chưa chọn loại sản phẩm!");
+			return; // Ngăn chặn tiếp tục xử lý khi có lỗi
+		}
+		if ($scope.form.description == null || $scope.form.description == "") {
+			alert("Mô tả sản phẩm không được bỏ trống!");
+			return;
+		}
 		$http.post(`/rest/products`,item).then(resp=>{
 			resp.data.createDate = new Date(resp.data.createDate);
 			$scope.items.push(resp.data);
@@ -50,6 +87,43 @@ app.controller("product-ctrl",function($scope,$http){
     //Update sản phẩm
     $scope.update = function(){
 		var item = angular.copy($scope.form);
+		if ($scope.form.name == null || $scope.form.name == "") {
+			alert("Tên sản phẩm không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.price == null || $scope.form.price == "") {
+			alert("Giá không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.price < 0 || $scope.form.price == 0) {
+			alert("Giá không phù hợp!");
+			return;
+		}
+		if ($scope.form.screen == null || $scope.form.screen == "") {
+			alert("Screen không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.ram == null || $scope.form.ram == "") {
+			alert("Ram không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.harddrive == null || $scope.form.harddrive == "") {
+			alert("Hard Drive không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.cpu == null || $scope.form.cpu == "") {
+			alert("Cpu không được bỏ trống!");
+			return;
+		}
+		if (!$scope.form.category.id) {
+			// Hiển thị thông báo lỗi hoặc thực hiện các hành động khác tùy thuộc vào yêu cầu của bạn
+			alert("Bạn chưa chọn loại sản phẩm!");
+			return; // Ngăn chặn tiếp tục xử lý khi có lỗi
+		}
+		if ($scope.form.description == null || $scope.form.description == "") {
+			alert("Mô tả sản phẩm không được bỏ trống!");
+			return;
+		}
 		$http.put(`/rest/products/${item.id}`,item).then(resp=>{
 			var index = $scope.items.findIndex(p=>p.id == item.id);
 			$scope.items[index] = item;

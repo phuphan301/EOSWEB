@@ -45,6 +45,14 @@ app.controller("category-ctrl",function($scope,$http){
     //Thêm loại sản phẩm
     $scope.create = function(){
 		var item = angular.copy($scope.form);
+		if ($scope.form.id == null || $scope.form.id == "") {
+			alert("Id không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.name == null || $scope.form.name == "") {
+			alert("Tên loại sản phẩm không được bỏ trống!");
+			return;
+		}
 		$http.post(`/rest/categories`,item).then(resp=>{
 			resp.data.createDate = new Date(resp.data.createDate);
 			$scope.items.push(resp.data);
@@ -60,6 +68,14 @@ app.controller("category-ctrl",function($scope,$http){
     //Update loại sản phẩm
     $scope.update = function(){
 		var item = angular.copy($scope.form);
+		if ($scope.form.id == null || $scope.form.id == "") {
+			alert("Id không được bỏ trống!");
+			return;
+		}
+		if ($scope.form.name == null || $scope.form.name == "") {
+			alert("Tên sản phẩm không được bỏ trống!");
+			return;
+		}
 		$http.put(`/rest/categories/${item.id}`,item).then(resp=>{
 			var index = $scope.items.findIndex(p=>p.id == item.id);
 			$scope.items[index] = item;

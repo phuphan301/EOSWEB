@@ -25,5 +25,6 @@ public interface Accountdao extends JpaRepository<Account, String>{
 	
 	Account findByUsername(String username);
 	
-	 List<Account> findByFullname(String fullname);
+	@Query("Select o from Account o Where o.fullname Like "+"%" +"?1"+"%")
+	List<Account> findByFullname(String fullname);
 }

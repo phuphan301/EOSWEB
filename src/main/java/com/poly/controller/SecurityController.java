@@ -11,31 +11,31 @@ public class SecurityController {
 	
 	@GetMapping("login/form")
 	public String loginForm(Model model) {
-		model.addAttribute("message", "Vui lòng đăng nhập!");
+		model.addAttribute("message", "Please sign in!");
 		return "security/login";
 	}
 	
 	@GetMapping("login/success")
 	public String loginSuccess(Model model) {
-		model.addAttribute("message", "Đăng nhập thành công!");
+		model.addAttribute("message", "Logged in successfully!");
 		return "security/login";
 	}
 	
 	@GetMapping("login/error")
 	public String loginError(Model model) {
-		model.addAttribute("message", "Sai thông tin đăng nhập!");
+		model.addAttribute("message", "Wrong login information!");
 		return "security/login";
 	}
 	
 	@GetMapping("unauthorized")
 	public String unauthorized(Model model) {
-		model.addAttribute("message", "Không có quyền truy xuất!");
+		model.addAttribute("message", "No access permissions!");
 		return "security/login";
 	}
 	
 	@GetMapping("logoff/success")
 	public String logoffSuccess(Model model) {
-		model.addAttribute("message", "Bạn đã đăng xuất!");
+		model.addAttribute("message", "You're signed out!");
 		return "security/login";
 	}
 	@GetMapping("register/form")

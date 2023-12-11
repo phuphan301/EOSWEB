@@ -58,13 +58,12 @@ public class ServiceImpl_Account implements Service_Account{
 
 	@Override
 	public void delete(String username) {
-		accDao.deleteById(username);
-		
+		accDao.deleteById(username);	
 	}
 
 	@Override
-	public List<Account> findByFullname(String username) {
-		return accDao.findByFullname(username);
+	public List<Account> findByFullname(String fullname) {
+		return accDao.findByFullname(fullname);
 	}
 
 	
